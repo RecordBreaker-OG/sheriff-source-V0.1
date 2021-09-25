@@ -28,7 +28,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'credits', 'options'];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -87,10 +87,9 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
-
 		for (i in 0...optionShit.length)
 		{
+			var tex = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i], 'preload');
 			var menuItem:FlxSprite = new FlxSprite(0, FlxG.height * 1.6);
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
@@ -224,15 +223,17 @@ class MainMenuState extends MusicBeatState
 		switch (daChoice)
 		{
 			case 'story mode':
-				FlxG.switchState(new StoryMenuState());
+				MusicBeatState.switchState(new StoryMenuState());
 				trace("Story Menu Selected");
 			case 'freeplay':
-				FlxG.switchState(new FreeplayState());
+				MusicBeatState.switchState(new FreeplayState());
 
 				trace("Freeplay Menu Selected");
+			case 'credits':
+				MusicBeatState.switchState(new CreditsState());
 
 			case 'options':
-				FlxG.switchState(new OptionsMenu());
+				MusicBeatState.switchState(new OptionsMenu());
 		}
 	}
 
