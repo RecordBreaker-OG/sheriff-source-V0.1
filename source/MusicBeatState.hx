@@ -12,6 +12,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
+import flixel.FlxState;
 
 class MusicBeatState extends FlxUIState
 {
@@ -35,6 +36,10 @@ class MusicBeatState extends FlxUIState
 		super.create();
 	}
 
+	public static function switchState(state:FlxState)
+	{
+		FlxG.switchState(state);
+	}
 
 	var array:Array<FlxColor> = [
 		FlxColor.fromRGB(148, 0, 211),
